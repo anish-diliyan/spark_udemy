@@ -1,4 +1,4 @@
-package part2dataframes
+package learn.part1_data_frame
 
 import org.apache.spark.sql.{SaveMode, SparkSession}
 import org.apache.spark.sql.types.{DateType, DoubleType, LongType, StringType, StructField, StructType}
