@@ -1,12 +1,13 @@
-package learn.part2_data_type
+package exercise.part2_data_types
 
-import org.apache.spark.sql.{Dataset, SparkSession}
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions.array_contains
 
-object DataSetJoins extends App {
-
+// joins and groups are WIDE transformations, i.e will involve shuffle operations
+object DataSetJoinsExercise extends App {
   val sparkSession = SparkSession
     .builder()
-    .appName("DataSetJoins")
+    .appName("DataSetJoinsExercise")
     .config("spark.master", "local")
     .getOrCreate()
 
@@ -29,13 +30,15 @@ object DataSetJoins extends App {
   case class Band(id: Long, name: String, hometown: String, year: Long)
   val bandsDs = readDF("bands.json").as[Band]
 
-  // join: return DataFrame, if you call join on DataSet, you will loose the type information
-  // joinWith: return DataSet, because we are working with DataSet use joinWith
-  val guitarPlayerBandsDs: Dataset[(GuitarPlayer, Band)] = guitarPlayerDs.joinWith(
-    bandsDs,
-    guitarPlayerDs.col("band") === bandsDs.col("id"), "inner"
+  // Find the guitar player for a guitar: Join the guitarDs and guitarPlayerDs
+  val guitarPlayerWithGuitarDs = guitarsDs.joinWith(
+    guitarPlayerDs,
+    array_contains(guitarPlayerDs.col("guitars"), guitarsDs.col("id")),
+    "outer"
   )
-  // column will be _1 and _2 and fields will be returned in [] in both tuple.
-  // this is the major difference between joining Datasets and Dataframes, otherwise almost same
-  guitarPlayerBandsDs.show()
+  guitarPlayerWithGuitarDs.show()
+
+  // group the guitar by their type and count value in each group
+  val guitarByTypeDs = guitarsDs.groupByKey(_.`type`).count()
+  guitarByTypeDs.show()
 }
