@@ -53,7 +53,7 @@ initdb.exe -D D:\pgsql_data -U postgres -W -E UTF8 -A scram-sha-256
 2. in another terminal psql -U udemy -d employees
 3. execute the queries.
 
-
+---------------------------------- Spark - Scala -----------------------------------------------
 
 
 
