@@ -96,9 +96,9 @@ object DataSources extends App {
   private val employeesDf = spark.read
     .format("jdbc")
     .option("driver", "org.postgresql.Driver")
-    .option("url", "jdbc:postgresql://localhost:5432/spark_udemy")
-    .option("user", "docker")
-    .option("password", "docker")
+    .option("url", "jdbc:postgresql://localhost:5432/employees")
+    .option("user", "udemy")
+    .option("password", "pgsql")
     .option("dbtable", "public.employees")
     .load()
 

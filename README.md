@@ -54,6 +54,14 @@ initdb.exe -D D:\pgsql_data -U postgres -W -E UTF8 -A scram-sha-256
 3. execute the queries.
 
 ---------------------------------- Spark - Scala -----------------------------------------------
+> Error: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.
+
+The error message "java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset" typically occurs 
+when you're trying to run a Hadoop-related application (like Spark with Hadoop dependencies) on a Windows machine, and 
+the system can't find the Hadoop binaries.
+
+Solution: download hadoop binary and add bin folder in env variable Add winutil.exe and hadoop.dll in hadoop/bin folder,
+so that it is also present in class path. version of winutil.exe and hadoop.dll must be same.
 
 
 
