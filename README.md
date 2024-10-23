@@ -36,7 +36,7 @@ if %ERRORLEVEL% EQU 0 (
 pause
 ```
 5. initiate a pg database server using following command (this is one time activity), but first create 
-pgsql_data this folder
+pgsql_data folder
 ```shell
 initdb.exe -D D:\pgsql_data -U postgres -W -E UTF8 -A scram-sha-256
 ```
@@ -46,7 +46,7 @@ initdb.exe -D D:\pgsql_data -U postgres -W -E UTF8 -A scram-sha-256
 2. CREATE USER udemy with password 'pgsql';
 3. GRANT ALL PRIVILEGES ON employees.* TO 'udemy'@'%';
 4. FLUSH PRIVILEGES;
-5. psql -U udemy -d employees -f employees_db.sql
+5. psql -U udemy -d employees -f employees_db.sql (add data in database)
 
 # Query database employees
 1. run command start_pg from cmd
@@ -60,8 +60,8 @@ The error message "java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.di
 when you're trying to run a Hadoop-related application (like Spark with Hadoop dependencies) on a Windows machine, and 
 the system can't find the Hadoop binaries.
 
-Solution: download hadoop binary and add bin folder in env variable Add winutil.exe and hadoop.dll in hadoop/bin folder,
-so that it is also present in class path. version of winutil.exe and hadoop.dll must be same.
+Solution: download hadoop binary and add bin folder in env variable - Add winutil.exe and hadoop.dll in hadoop/bin folder,
+so that it is also present in class path. version of winutil.exe and hadoop.dll must be same as hadoop.
 
 
 
